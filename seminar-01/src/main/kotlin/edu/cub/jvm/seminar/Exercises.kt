@@ -1,5 +1,7 @@
 package edu.cub.jvm.seminar
 
+import java.util.PriorityQueue
+
 /**
  * Checks if a given string is a palindrome.
  * A palindrome reads the same forward and backward.
@@ -11,7 +13,8 @@ package edu.cub.jvm.seminar
  * "A man, a plan, a canal: Panama" -> true
  */
 fun isPalindrome(input: String): Boolean {
-    TODO("Not yet implemented")
+    val cleanInput = input.filter { it.isLetterOrDigit() }.lowercase()
+    return cleanInput == cleanInput.reversed()
 }
 
 /**
@@ -21,9 +24,7 @@ fun isPalindrome(input: String): Boolean {
  * [1, 2, 3, 4] -> 2^2 + 4^2 = 4 + 16 = 20
  * [1, 3, 5] -> 0
  */
-fun sumOfEvenSquares(numbers: List<Int>): Int {
-    TODO("Not yet implemented")
-}
+fun sumOfEvenSquares(numbers: List<Int>): Int = numbers.filter { it % 2 == 0 }.sumOf { it * it }
 
 /**
  * Determines if two strings are anagrams of each other.
@@ -35,7 +36,12 @@ fun sumOfEvenSquares(numbers: List<Int>): Int {
  * "hello", "world" -> false
  */
 fun areAnagrams(firstString: String, secondString: String): Boolean {
-    TODO("Not yet implemented")
+    if (firstString.length != secondString.length) return false
+
+    val firstCounts = firstString.groupingBy { it }.eachCount()
+    val secondCounts = secondString.groupingBy { it }.eachCount()
+
+    return firstCounts == secondCounts
 }
 
 /**
@@ -47,9 +53,7 @@ fun areAnagrams(firstString: String, secondString: String): Boolean {
  * [5, 5] -> null (only 1 unique element)
  * [10] -> null
  */
-fun findSecondLargest(numbers: List<Int>): Int? {
-    TODO("Not yet implemented")
-}
+fun findSecondLargest(numbers: List<Int>): Int? = numbers.distinct().sortedDescending().getOrNull(1)
 
 /**
  * Count how many times each word appears in a list.
@@ -58,9 +62,7 @@ fun findSecondLargest(numbers: List<Int>): Int? {
  * Example:
  * ["apple", "banana", "apple"] -> {"apple": 2, "banana": 1}
  */
-fun countWordFrequencies(words: List<String>): Map<String, Int> {
-    TODO("Not yet implemented")
-}
+fun countWordFrequencies(words: List<String>): Map<String, Int> = words.groupingBy { it }.eachCount()
 
 /**
  * Group strings by their first letter.
@@ -69,9 +71,8 @@ fun countWordFrequencies(words: List<String>): Map<String, Int> {
  * Example:
  * ["Apple", "Banana", "Apricot"] -> {'A': ["Apple", "Apricot"], 'B': ["Banana"]}
  */
-fun groupByFirstLetter(strings: List<String>): Map<Char, List<String>> {
-    TODO("Not yet implemented")
-}
+fun groupByFirstLetter(strings: List<String>): Map<Char, List<String>> =
+    strings.filter { it.isNotEmpty() }.groupBy { it.first() }
 
 /**
  * Calculate the moving average of a list of numbers with a window size of 3.
@@ -83,8 +84,8 @@ fun groupByFirstLetter(strings: List<String>): Map<Char, List<String>> {
  * Window 3: (3+4+5)/3 = 4.0
  * Result -> [2.0, 3.0, 4.0]
  */
-fun calculateMovingAverage(numbers: List<Int>): List<Double> {
-    TODO("Not yet implemented")
+fun calculateMovingAverage(numbers: List<Int>): List<Double> = numbers.windowed(size = 3, step = 1) { window ->
+    window.average()
 }
 
 /**
@@ -98,5 +99,14 @@ fun calculateMovingAverage(numbers: List<Int>): List<Double> {
  * List: [10, 5, 20, 5], k=2 -> [20, 10]
  */
 fun findLargest(numbers: List<Int>, k: Int): List<Int> {
-    TODO("Not yet implemented")
+    val minHeap = PriorityQueue<Int>()
+
+    for (num in numbers) {
+        minHeap.add(num)
+
+        if (minHeap.size > k) {
+            minHeap.poll()
+        }
+    }
+    return minHeap.sortedDescending()
 }
