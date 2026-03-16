@@ -6,3 +6,4 @@
 | Feb 19, 2026 | OOP 1 + Testing | [Slides (Testing)](seminar-02/slides/slides.pdf) <br> [Code](seminar-02/src/main/kotlin/edu/cub/jvm/seminar/Vector2D.kt)|
 | Feb 26, 2026 | OOP 2 + SOLID | [Slides (SOLID)](seminar-03/slides/slides.pdf) |
 | Mar 5, 2026 | Variance | [Notebook](seminar-04/variance.ipynb) |
+| Mar 12, 2026 | Reflection | [Examples](seminar-05/src/main/kotlin/examples) |
