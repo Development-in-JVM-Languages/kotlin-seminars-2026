@@ -8,3 +8,7 @@
 | Mar 5, 2026 | Variance | [Notebook](seminar-04/variance.ipynb) |
 | Mar 12, 2026 | Reflection | [Examples](seminar-05/src/main/kotlin/examples) |
 | Mar 19, 2026 | DSL | |
+| Mar 26, 2026 | Concurrency 1 | |
+| Apr 9, 2026 | Coroutines ||
+
+
